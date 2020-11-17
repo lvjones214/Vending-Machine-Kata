@@ -23,8 +23,15 @@ public class VendingMachingTest {
     @Test
     public void vendingMachineShouldAcceptDime() {
         VendingMachine underTest = new VendingMachine();
-        Coin dime = new Coin("dime", 25);
+        Coin dime = new Coin("dime", 10);
         boolean money = underTest.insert(dime);
         assertThat(money).isTrue();
+    }
+    @Test
+    public void vendingMachineShouldRejectPenny() {
+        VendingMachine underTest = new VendingMachine();
+        Coin penny = new Coin("penny", 1);
+        boolean money = underTest.insert(penny);
+        assertThat(money).isFalse();
     }
 }

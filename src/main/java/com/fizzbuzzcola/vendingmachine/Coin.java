@@ -7,5 +7,13 @@ package com.fizzbuzzcola.vendingmachine;public class Coin {
         this.coinType = coinType;
         this.size = size;
     }
+
+    public String getCoinType() {
+        return coinType;
+    }
+
+    public int getSize() {
+        return size;
+    }
 }
 
