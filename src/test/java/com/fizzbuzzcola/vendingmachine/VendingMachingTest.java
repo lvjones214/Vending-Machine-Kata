@@ -13,4 +13,12 @@ public class VendingMachingTest {
         boolean money = underTest.insert(nickel);
         assertThat(money).isTrue();
     }
+    @Test
+    public void vendingMachineShouldAcceptQuarter() {
+        VendingMachine underTest = new VendingMachine();
+        Coin quarter = new Coin("quarter", 25);
+        boolean money = underTest.insert(quarter);
+        assertThat(money).isTrue();
+    }
+
 }
