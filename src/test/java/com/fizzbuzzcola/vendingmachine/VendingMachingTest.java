@@ -24,12 +24,20 @@ public class VendingMachingTest {
         int display = underTest.insert("dime");
         assertThat(display).isEqualTo(10);
     }
-//    @Test
-//    public void vendingMachineShouldRejectPenny() {
-//        VendingMachine underTest = new VendingMachine();
-//        boolean money = underTest.insert("penny");
-//        assertThat(money).isFalse();
-//    }
+    @Test
+    public void vendingMachineShouldRejectPennyAndPutInCoinReturn() {
+        VendingMachine underTest = new VendingMachine();
+        int display = underTest.insert("penny");
+        assertThat(display).isEqualTo(0);
+        int coinReturn1 = underTest.checkCoin("penny");
+        assertThat(coinReturn1).isEqualTo(1);
+        int coinReturn2 = underTest.checkCoin("nickel");
+        assertThat(coinReturn2).isEqualTo(0);
+        int coinReturn3 = underTest.checkCoin("quarter");
+        assertThat(coinReturn3).isEqualTo(0);
+        int coinReturn4 = underTest.checkCoin("dime");
+        assertThat(coinReturn4).isEqualTo(0);
+    }
 //    @Test
 //    public void vendingMachineDisplaysValueOfCoinsAdded(){
 //        VendingMachine underTest = new VendingMachine();
