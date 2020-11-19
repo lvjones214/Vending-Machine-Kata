@@ -1,8 +1,9 @@
 package com.fizzbuzzcola.vendingmachine;
 
 public class VendingMachine {
-    public boolean insert(Coin coin){
-        if(coin.getSize() > 1){
+    String coin = "";
+    public boolean insert(String coin){
+        if(coin == "nickel"){
             return true;
         }
         return false;
