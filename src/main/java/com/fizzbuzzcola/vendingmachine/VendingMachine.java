@@ -2,10 +2,11 @@ package com.fizzbuzzcola.vendingmachine;
 
 public class VendingMachine {
     String coin = "";
-    public boolean insert(String coin){
-        if(coin == "nickel" || coin == "quarter" || coin == "dime"){
-            return true;
+    int display = 0;
+    public int insert(String coin) {
+        if(coin == "nickel"){
+            display = 5;
         }
-        return false;
+        return display;
     }
 }
