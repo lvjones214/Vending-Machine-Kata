@@ -18,12 +18,12 @@ public class VendingMachingTest {
         int display = underTest.insert("quarter");
         assertThat(display).isEqualTo(25);
     }
-//    @Test
-//    public void vendingMachineShouldAcceptDime() {
-//        VendingMachine underTest = new VendingMachine();
-//        boolean money = underTest.insert("dime");
-//        assertThat(money).isTrue();
-//    }
+    @Test
+    public void vendingMachineShouldAcceptDimeAndDisplay10() {
+        VendingMachine underTest = new VendingMachine();
+        int display = underTest.insert("dime");
+        assertThat(display).isEqualTo(10);
+    }
 //    @Test
 //    public void vendingMachineShouldRejectPenny() {
 //        VendingMachine underTest = new VendingMachine();

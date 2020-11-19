@@ -8,6 +8,8 @@ public class VendingMachine {
             display = 5;
         } else if(coin == "quarter"){
             display = 25;
+        } else if(coin == "dime"){
+            display = 10;
         }
         return display;
     }
