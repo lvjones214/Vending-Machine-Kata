@@ -12,13 +12,12 @@ public class VendingMachingTest {
         int display = underTest.insert("nickel");
         assertThat(display).isEqualTo(5);
     }
-//    @Test
-//    public void vendingMachineShouldAcceptQuarter() {
-//        VendingMachine underTest = new VendingMachine();
-//        String coin = "quarter";
-//        boolean money = underTest.insert("quarter");
-//        assertThat(money).isTrue();
-//    }
+    @Test
+    public void vendingMachineShouldAcceptQuarterAndDisplay25() {
+        VendingMachine underTest = new VendingMachine();
+        int display = underTest.insert("quarter");
+        assertThat(display).isEqualTo(25);
+    }
 //    @Test
 //    public void vendingMachineShouldAcceptDime() {
 //        VendingMachine underTest = new VendingMachine();
