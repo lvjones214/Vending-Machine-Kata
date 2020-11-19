@@ -20,13 +20,12 @@ public class VendingMachingTest {
         boolean money = underTest.insert("quarter");
         assertThat(money).isTrue();
     }
-//    @Test
-//    public void vendingMachineShouldAcceptDime() {
-//        VendingMachine underTest = new VendingMachine();
-//        Coin dime = new Coin("dime", 10);
-//        boolean money = underTest.insert(dime);
-//        assertThat(money).isTrue();
-//    }
+    @Test
+    public void vendingMachineShouldAcceptDime() {
+        VendingMachine underTest = new VendingMachine();
+        boolean money = underTest.insert("dime");
+        assertThat(money).isTrue();
+    }
 //    @Test
 //    public void vendingMachineShouldRejectPenny() {
 //        VendingMachine underTest = new VendingMachine();
