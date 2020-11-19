@@ -1,21 +1,21 @@
 package com.fizzbuzzcola.vendingmachine;
 
 public class VendingMachine {
-    int display = 0;
+    int amount = 0;
     int coinReturn = 0;
     private Object money;
 
     public int insert(String coin) {
         if(coin == "nickel"){
-            display = display + 5;
+            amount = amount + 5;
         } else if(coin == "quarter"){
-            display = display + 25;
+            amount = amount + 25;
         } else if(coin == "dime"){
-            display = display + 10;
+            amount = amount + 10;
         } else if (coin == "penny"){
-            display = display + 0;
+            amount = amount + 0;
         }
-        return display;
+        return amount;
     }
     public int checkCoin(String coin){
         if(coin == "penny"){
