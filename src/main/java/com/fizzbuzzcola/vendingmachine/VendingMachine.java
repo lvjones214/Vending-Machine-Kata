@@ -7,21 +7,21 @@ public class VendingMachine {
 
     public int insert(String coin) {
         if(coin == "nickel"){
-            display = 5;
+            display = display + 5;
         } else if(coin == "quarter"){
-            display = 25;
+            display = display + 25;
         } else if(coin == "dime"){
-            display = 10;
+            display = display + 10;
         } else if (coin == "penny"){
-            display = 0;
+            display = display + 0;
         }
         return display;
     }
     public int checkCoin(String coin){
         if(coin == "penny"){
-            coinReturn = 1;
+            coinReturn = coinReturn + 1;
         } else {
-            coinReturn = 0;
+            coinReturn = coinReturn + 0;
         }
         return coinReturn;
     }
