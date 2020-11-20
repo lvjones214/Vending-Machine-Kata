@@ -84,8 +84,15 @@ public class VendingMachingTest {
     @Test
     public void userCanBuyChips(){
         VendingMachine underTest = new VendingMachine();
-        int money = 65;
+        int money = 50;
         String message = underTest.buyProduct(money, "chips");
+        assertThat(message).isEqualTo("THANK YOU");
+    }
+    @Test
+    public void userCanBuyCandy(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 65;
+        String message = underTest.buyProduct(money, "candy");
         assertThat(message).isEqualTo("THANK YOU");
     }
 }
