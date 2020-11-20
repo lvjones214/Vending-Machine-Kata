@@ -26,7 +26,12 @@ public class VendingMachine {
         return coinReturn;
     }
     public String vmDisplay(int amount){
-        message = "INSERT COIN";
+        if(amount > 0){
+            System.out.println(amount);
+            message = ""+ amount;
+        }else {
+            message = "INSERT COIN";
+        }
         return message;
     }
 }

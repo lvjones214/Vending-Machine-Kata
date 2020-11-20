@@ -64,4 +64,14 @@ public class VendingMachingTest {
         String message = underTest.vmDisplay(0);
         assertThat(message).isEqualTo("INSERT COIN");
     }
+    @Test
+    public void vendingMachineShouldDisplayValueOfCoinInserted(){
+        VendingMachine underTest = new VendingMachine();
+        int amount = underTest.insert("nickel");
+        int coinReturn = underTest.checkCoin("nickel");
+        String message = underTest.vmDisplay(amount);
+        assertThat(amount).isEqualTo(5);
+        assertThat(coinReturn).isEqualTo(0);
+        assertThat(message).isEqualTo("5");
+    }
 }
