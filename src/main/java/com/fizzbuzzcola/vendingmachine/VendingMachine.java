@@ -1,9 +1,9 @@
 package com.fizzbuzzcola.vendingmachine;
 
 public class VendingMachine {
-    int amount = 0;
-    int coinReturn = 0;
-    private Object money;
+    private int amount = 0;
+    private int coinReturn = 0;
+    private String message = "";
 
     public int insert(String coin) {
         if(coin == "nickel"){
@@ -24,5 +24,9 @@ public class VendingMachine {
             coinReturn = coinReturn + 0;
         }
         return coinReturn;
+    }
+    public String vmDisplay(int amount){
+        message = "INSERT COIN";
+        return message;
     }
 }

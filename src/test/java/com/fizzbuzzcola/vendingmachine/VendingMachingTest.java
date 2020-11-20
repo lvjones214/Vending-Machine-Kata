@@ -58,4 +58,10 @@ public class VendingMachingTest {
         assertThat(display).isEqualTo(40);
         assertThat(coinReturn).isEqualTo(1);
     }
+    @Test
+    public void vendingMachingShouldDisplayInsertCoinByDefault(){
+        VendingMachine underTest = new VendingMachine();
+        String message = underTest.vmDisplay(0);
+        assertThat(message).isEqualTo("INSERT COIN");
+    }
 }
