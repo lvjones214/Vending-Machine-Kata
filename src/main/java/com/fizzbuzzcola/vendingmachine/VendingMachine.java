@@ -39,16 +39,22 @@ public class VendingMachine {
         if(productName == "cola"){
             if(money >= 100){
                 thankYou = "THANK YOU";
+            } else {
+                thankYou = "PRICE: $1.00";
             }
         }
         if(productName == "chips"){
             if(money >= 50){
                 thankYou = "THANK YOU";
+            } else {
+                thankYou = "PRICE: $0.50";
             }
         }
         if(productName == "candy"){
             if(money >= 65){
                 thankYou = "THANK YOU";
+            } else {
+                thankYou = "PRICE: $0.65";
             }
         }
         return thankYou;
