@@ -74,4 +74,12 @@ public class VendingMachingTest {
         assertThat(coinReturn).isEqualTo(0);
         assertThat(message).isEqualTo("5");
     }
+    @Test
+    public void userCanBuyCola(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 100;
+        String message = underTest.buyProduct(money, "cola");
+        assertThat(message).isEqualTo("THANK YOU");
+    }
+
 }
