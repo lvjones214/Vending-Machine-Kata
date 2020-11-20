@@ -41,7 +41,11 @@ public class VendingMachine {
                 thankYou = "THANK YOU";
             }
         }
-
+        if(productName == "chips"){
+            if(money >= 65){
+                thankYou = "THANK YOU";
+            }
+        }
         return thankYou;
     }
 }
