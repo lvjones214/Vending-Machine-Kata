@@ -4,6 +4,8 @@ public class VendingMachine {
     private int amount = 0;
     private int coinReturn = 0;
     private String message = "";
+    private String thankYou = "";
+    private int money = 0;
 
     public int insert(String coin) {
         if(coin == "nickel"){
@@ -27,11 +29,19 @@ public class VendingMachine {
     }
     public String vmDisplay(int amount){
         if(amount > 0){
-            System.out.println(amount);
             message = ""+ amount;
         }else {
             message = "INSERT COIN";
         }
         return message;
+    }
+    public String buyProduct(int money, String productName){
+        if(productName == "cola"){
+            if(money >= 100){
+                thankYou = "THANK YOU";
+            }
+        }
+
+        return thankYou;
     }
 }
