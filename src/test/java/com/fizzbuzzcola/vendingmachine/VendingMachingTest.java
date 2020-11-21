@@ -81,5 +81,40 @@ public class VendingMachingTest {
         String message = underTest.buyProduct(money, "cola");
         assertThat(message).isEqualTo("THANK YOU");
     }
+    @Test
+    public void userCanBuyChips(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 50;
+        String message = underTest.buyProduct(money, "chips");
+        assertThat(message).isEqualTo("THANK YOU");
+    }
+    @Test
+    public void userCanBuyCandy(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 65;
+        String message = underTest.buyProduct(money, "candy");
+        assertThat(message).isEqualTo("THANK YOU");
+    }
+    @Test
+    public void ifUserDidNotDepositEnoughMoneyVMDisplaysPRICE(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 40;
+        String message = underTest.buyProduct(money, "cola");
+        assertThat(message).isEqualTo("PRICE: $1.00");
+        String message2 = underTest.buyProduct(money, "chips");
+        assertThat(message2).isEqualTo("PRICE: $0.50");
+        String message3 = underTest.buyProduct(money, "candy");
+        assertThat(message3).isEqualTo("PRICE: $0.65");
+    }
+    @Test
+    public void afterProductIsPurchasedAndMachineSaysThankYouDisplayReadsInsertCoinAndAmountIs0(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 50;
+        String message = underTest.buyProduct(money, "chips");
+        assertThat(message).isEqualTo("THANK YOU");
+        int amount = underTest.getAmount();
+        String message2 = underTest.vmDisplay((amount));
+        assertThat(message2).isEqualTo("INSERT COIN $0.00");
+    }
 
 }
