@@ -6,6 +6,7 @@ public class VendingMachine {
     private String message = "";
     private String thankYou = "";
     private int money = 0;
+    private double dollars = 0.00;
 
     public int insert(String coin) {
         if(coin == "nickel"){
@@ -29,8 +30,9 @@ public class VendingMachine {
     }
     public String vmDisplay(int amount){
         if(amount > 0){
-            double money = amount/100;
-            message = "$"+ amount;
+            dollars = amount/100.00;
+            System.out.println(dollars);
+            message = "$"+ dollars;
         }else {
             message = "INSERT COIN $0.00";
         }
@@ -71,5 +73,11 @@ public class VendingMachine {
 
     public int getCoinReturn() {
         return coinReturn;
+    }
+
+    public String pressCoinReturn(int coinReturn) {
+        dollars = coinReturn / 100.00;
+        amount = 0;
+        return "$"+dollars;
     }
 }

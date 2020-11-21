@@ -62,7 +62,7 @@ public class VendingMachineTest {
     public void vendingMachingShouldDisplayInsertCoinByDefault(){
         VendingMachine underTest = new VendingMachine();
         String message = underTest.vmDisplay(0);
-        assertThat(message).isEqualTo("INSERT COIN");
+        assertThat(message).isEqualTo("INSERT COIN $0.00");
     }
     @Test
     public void vendingMachineShouldDisplayValueOfCoinInserted(){
@@ -72,7 +72,7 @@ public class VendingMachineTest {
         String message = underTest.vmDisplay(amount);
         assertThat(amount).isEqualTo(5);
         assertThat(coinReturn).isEqualTo(0);
-        assertThat(message).isEqualTo("5");
+        assertThat(message).isEqualTo("$0.05");
     }
     @Test
     public void userCanBuyCola(){
@@ -126,6 +126,35 @@ public class VendingMachineTest {
         assertThat(amount).isEqualTo(0);
         int coinReturn = underTest.getCoinReturn();
         assertThat(coinReturn).isEqualTo(10);
+        String message2 = underTest.vmDisplay((amount));
+        assertThat(message2).isEqualTo("INSERT COIN $0.00");
+    }
+    @Test
+    public void userGetsAllCoinsInCoinReturnWhenPressed(){
+        VendingMachine underTest = new VendingMachine();
+        int display = underTest.insert("quarter");
+        assertThat(display).isEqualTo(25);
+        int amount = underTest.getAmount();
+        assertThat(amount).isEqualTo(25);
+        String coinReturnAmount = underTest.pressCoinReturn(amount);
+        assertThat(coinReturnAmount).isEqualTo("$0.25");
+        int coinReturn = underTest.getCoinReturn();
+        assertThat(coinReturn).isEqualTo(0);
+    }
+    @Test
+    public void userGetsAllMoneyBackWhenCoinReturnPressed(){
+        VendingMachine underTest = new VendingMachine();
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        int display = underTest.insert("dime");
+        assertThat(display).isEqualTo(85);
+        int amount = underTest.getAmount();
+        String message = underTest.buyProduct(amount, "cola");
+        assertThat(message).isEqualTo("PRICE: $1.00");
+        String coinReturnAmount = underTest.pressCoinReturn(amount);
+        assertThat(coinReturnAmount).isEqualTo("$0.85");
+        amount = underTest.getAmount();
         String message2 = underTest.vmDisplay((amount));
         assertThat(message2).isEqualTo("INSERT COIN $0.00");
     }
