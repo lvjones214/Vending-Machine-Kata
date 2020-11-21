@@ -77,7 +77,7 @@ public class VendingMachine {
 
     public String pressCoinReturn(int coinReturn) {
         dollars = coinReturn / 100.00;
-        coinReturn = 0;
+        amount = 0;
         return "$"+dollars;
     }
 }

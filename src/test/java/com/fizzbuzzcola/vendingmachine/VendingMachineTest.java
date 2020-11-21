@@ -141,5 +141,21 @@ public class VendingMachineTest {
         int coinReturn = underTest.getCoinReturn();
         assertThat(coinReturn).isEqualTo(0);
     }
-    
+    @Test
+    public void userGetsAllMoneyBackWhenCoinReturnPressed(){
+        VendingMachine underTest = new VendingMachine();
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        int display = underTest.insert("dime");
+        assertThat(display).isEqualTo(85);
+        int amount = underTest.getAmount();
+        String message = underTest.buyProduct(amount, "cola");
+        assertThat(message).isEqualTo("PRICE: $1.00");
+        String coinReturnAmount = underTest.pressCoinReturn(amount);
+        assertThat(coinReturnAmount).isEqualTo("$0.85");
+        amount = underTest.getAmount();
+        String message2 = underTest.vmDisplay((amount));
+        assertThat(message2).isEqualTo("INSERT COIN $0.00");
+    }
 }
