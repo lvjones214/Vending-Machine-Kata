@@ -29,34 +29,42 @@ public class VendingMachine {
     }
     public String vmDisplay(int amount){
         if(amount > 0){
-            message = ""+ amount;
+            double money = amount/100;
+            message = "$"+ amount;
         }else {
-            message = "INSERT COIN";
+            message = "INSERT COIN $0.00";
         }
         return message;
     }
-    public String buyProduct(int money, String productName){
+    public String buyProduct(int amount, String productName){
         if(productName == "cola"){
-            if(money >= 100){
+            if(amount >= 100){
                 thankYou = "THANK YOU";
+                amount = amount - 100;
             } else {
                 thankYou = "PRICE: $1.00";
             }
         }
         if(productName == "chips"){
-            if(money >= 50){
+            if(amount >= 50){
                 thankYou = "THANK YOU";
+                amount = amount - 50;
             } else {
                 thankYou = "PRICE: $0.50";
             }
         }
         if(productName == "candy"){
-            if(money >= 65){
+            if(amount >= 65){
                 thankYou = "THANK YOU";
+                amount = amount -65;
             } else {
                 thankYou = "PRICE: $0.65";
             }
         }
         return thankYou;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

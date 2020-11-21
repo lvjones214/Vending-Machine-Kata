@@ -106,5 +106,15 @@ public class VendingMachingTest {
         String message3 = underTest.buyProduct(money, "candy");
         assertThat(message3).isEqualTo("PRICE: $0.65");
     }
+    @Test
+    public void afterProductIsPurchasedAndMachineSaysThankYouDisplayReadsInsertCoinAndAmountIs0(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 50;
+        String message = underTest.buyProduct(money, "chips");
+        assertThat(message).isEqualTo("THANK YOU");
+        int amount = underTest.getAmount();
+        String message2 = underTest.vmDisplay((amount));
+        assertThat(message2).isEqualTo("INSERT COIN $0.00");
+    }
 
 }
