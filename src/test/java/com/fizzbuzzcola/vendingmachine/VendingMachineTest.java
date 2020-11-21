@@ -62,7 +62,7 @@ public class VendingMachineTest {
     public void vendingMachingShouldDisplayInsertCoinByDefault(){
         VendingMachine underTest = new VendingMachine();
         String message = underTest.vmDisplay(0);
-        assertThat(message).isEqualTo("INSERT COIN");
+        assertThat(message).isEqualTo("INSERT COIN $0.00");
     }
     @Test
     public void vendingMachineShouldDisplayValueOfCoinInserted(){
@@ -72,7 +72,7 @@ public class VendingMachineTest {
         String message = underTest.vmDisplay(amount);
         assertThat(amount).isEqualTo(5);
         assertThat(coinReturn).isEqualTo(0);
-        assertThat(message).isEqualTo("5");
+        assertThat(message).isEqualTo("$0.05");
     }
     @Test
     public void userCanBuyCola(){
@@ -129,4 +129,17 @@ public class VendingMachineTest {
         String message2 = underTest.vmDisplay((amount));
         assertThat(message2).isEqualTo("INSERT COIN $0.00");
     }
+    @Test
+    public void userGetsAllCoinsInCoinReturnWhenPressed(){
+        VendingMachine underTest = new VendingMachine();
+        int display = underTest.insert("quarter");
+        assertThat(display).isEqualTo(25);
+        int amount = underTest.getAmount();
+        assertThat(amount).isEqualTo(25);
+        String coinReturnAmount = underTest.pressCoinReturn(amount);
+        assertThat(coinReturnAmount).isEqualTo("$0.25");
+        int coinReturn = underTest.getCoinReturn();
+        assertThat(coinReturn).isEqualTo(0);
+    }
+    
 }
