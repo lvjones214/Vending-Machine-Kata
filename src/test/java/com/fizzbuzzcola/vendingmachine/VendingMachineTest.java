@@ -158,4 +158,15 @@ public class VendingMachineTest {
         String message2 = underTest.vmDisplay((amount));
         assertThat(message2).isEqualTo("INSERT COIN $0.00");
     }
+    @Test
+    public void vendingMachineKnowsHowManyOfEachCoinItHas(){
+        VendingMachine underTest = new VendingMachine();
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("nickel");
+        underTest.insert("nickel");
+        underTest.insert("dime");
+        
+    }
 }
