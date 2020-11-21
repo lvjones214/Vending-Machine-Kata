@@ -78,6 +78,8 @@ public class VendingMachineTest {
     public void userCanBuyCola(){
         VendingMachine underTest = new VendingMachine();
         int money = 100;
+        boolean colaSoldOut = underTest.isColaSoldOut();
+        assertThat(colaSoldOut).isEqualTo(false);
         String message = underTest.buyProduct(money, "cola");
         assertThat(message).isEqualTo("THANK YOU");
     }

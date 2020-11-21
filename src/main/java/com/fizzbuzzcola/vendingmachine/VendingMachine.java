@@ -43,19 +43,20 @@ public class VendingMachine {
     }
     public String buyProduct(int amount, String productName){
         if(productName == "cola"){
-            if(colaSoldOut = true){
-                thankYou = "SOLD OUT";
-            } else {
+            if(colaSoldOut == false){
+                System.out.println(colaSoldOut);
                 if(amount >= 100){
                     thankYou = "THANK YOU";
                     amount = amount - 100;
                 } else {
                     thankYou = "PRICE: $1.00";
                 }
+            } else if(colaSoldOut == true) {
+                thankYou = "SOLD OUT";
             }
         }
         if(productName == "chips"){
-            if(chipsSoldOut = true){
+            if(chipsSoldOut == true){
                 thankYou = "SOLD OUT";
             } else {
                 if(amount >= 50){
@@ -67,7 +68,7 @@ public class VendingMachine {
             }
         }
         if(productName == "candy"){
-            if(candySoldOut = true){
+            if(candySoldOut == true){
                 thankYou = "SOLD OUT";
             } else {
                 if(amount >= 65){
@@ -90,6 +91,18 @@ public class VendingMachine {
         return coinReturn;
     }
 
+    public boolean isChipsSoldOut() {
+        return chipsSoldOut;
+    }
+
+    public boolean isColaSoldOut() {
+        return colaSoldOut;
+    }
+
+    public boolean isCandySoldOut() {
+        return candySoldOut;
+    }
+
     public String pressCoinReturn(int coinReturn) {
         dollars = coinReturn / 100.00;
         amount = 0;
@@ -109,6 +122,9 @@ public class VendingMachine {
             productSoldOut = true;
         }else{
             productSoldOut = false;
+            colaSoldOut = false;
+            chipsSoldOut = false;
+            candySoldOut = false;
         }
         return productSoldOut;
     }
