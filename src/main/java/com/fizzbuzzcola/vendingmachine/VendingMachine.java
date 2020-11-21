@@ -61,10 +61,15 @@ public class VendingMachine {
                 thankYou = "PRICE: $0.65";
             }
         }
+        coinReturn = coinReturn + amount;
         return thankYou;
     }
 
     public int getAmount() {
         return amount;
+    }
+
+    public int getCoinReturn() {
+        return coinReturn;
     }
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VendingMachingTest {
+public class VendingMachineTest {
 
     @Test
     public void vendingMachineShouldAcceptNickelAndDisplayAmount() {
@@ -116,5 +116,17 @@ public class VendingMachingTest {
         String message2 = underTest.vmDisplay((amount));
         assertThat(message2).isEqualTo("INSERT COIN $0.00");
     }
-
+    @Test
+    public void afterPurchaseCandyWith75CentsGet10CentsInCoinReturn(){
+        VendingMachine underTest = new VendingMachine();
+        int money = 75;
+        String message = underTest.buyProduct(money, "candy");
+        assertThat(message).isEqualTo("THANK YOU");
+        int amount = underTest.getAmount();
+        assertThat(amount).isEqualTo(0);
+        int coinReturn = underTest.getCoinReturn();
+        assertThat(coinReturn).isEqualTo(10);
+        String message2 = underTest.vmDisplay((amount));
+        assertThat(message2).isEqualTo("INSERT COIN $0.00");
+    }
 }
