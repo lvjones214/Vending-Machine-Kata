@@ -169,10 +169,24 @@ public class VendingMachineTest {
         int amount = underTest.getAmount();
         assertThat(amount).isEqualTo(85);
         int nickels = underTest.getNickels();
+        assertThat(nickels).isEqualTo(2);
+        int dimes = underTest.getDimes();
+        assertThat(dimes).isEqualTo(0);
+        int quarters = underTest.getQuarters();
+        assertThat(quarters).isEqualTo(3);
+    }
+    @Test
+    public void vendingMachineKnowsItCantMakeChangeIfNoNickels(){
+        VendingMachine underTest = new VendingMachine();
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("dime");
+        underTest.insert("dime");
+        underTest.insert("dime");
+        int nickels = underTest.getNickels();
         int dimes = underTest.getDimes();
         int quarters = underTest.getQuarters();
-        String change = underTest.makeChange(nickels, dimes, quarters);
-        assertThat(change).isEqualTo("nickels=2, dimes=0, quarters=3" );
+        boolean change = underTest.makeChange(nickels, dimes, quarters);
+        assertThat(change).isEqualTo(false);
     }
-
 }

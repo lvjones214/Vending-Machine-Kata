@@ -101,7 +101,10 @@ public class VendingMachine {
         return "$"+dollars;
     }
 
-    public String makeChange(int nickels, int dimes, int quarters) {
-        return "nickels="+nickels+", dimes="+dimes+", quarters="+quarters;
+    public boolean makeChange(int nickels, int dimes, int quarters) {
+        if(nickels < 1){
+            return false;
+        }
+        return true;
     }
 }
