@@ -61,12 +61,18 @@ public class VendingMachineTest {
     @Test
     public void vendingMachingShouldDisplayInsertCoinByDefault(){
         VendingMachine underTest = new VendingMachine();
+        int nickels = underTest.stashNickelsForTesting();
+        int dimes = underTest.stashDimesForTesting();
+        boolean change = underTest.makeChange(nickels,dimes);
         String message = underTest.vmDisplay(0);
         assertThat(message).isEqualTo("INSERT COIN $0.00");
     }
     @Test
     public void vendingMachineShouldDisplayValueOfCoinInserted(){
         VendingMachine underTest = new VendingMachine();
+        int nickels = underTest.stashNickelsForTesting();
+        int dimes = underTest.stashDimesForTesting();
+        boolean change = underTest.makeChange(nickels,dimes);
         int amount = underTest.insert("nickel");
         int coinReturn = underTest.checkCoin("nickel");
         String message = underTest.vmDisplay(amount);
@@ -109,6 +115,9 @@ public class VendingMachineTest {
     @Test
     public void afterProductIsPurchasedAndMachineSaysThankYouDisplayReadsInsertCoinAndAmountIs0(){
         VendingMachine underTest = new VendingMachine();
+        int nickels = underTest.stashNickelsForTesting();
+        int dimes = underTest.stashDimesForTesting();
+        boolean change = underTest.makeChange(nickels,dimes);
         int money = 50;
         String message = underTest.buyProduct(money, "chips");
         assertThat(message).isEqualTo("THANK YOU");
@@ -119,6 +128,9 @@ public class VendingMachineTest {
     @Test
     public void afterPurchaseCandyWith75CentsGet10CentsInCoinReturn(){
         VendingMachine underTest = new VendingMachine();
+        int nickels = underTest.stashNickelsForTesting();
+        int dimes = underTest.stashDimesForTesting();
+        boolean change = underTest.makeChange(nickels,dimes);
         int money = 75;
         String message = underTest.buyProduct(money, "candy");
         assertThat(message).isEqualTo("THANK YOU");
@@ -144,6 +156,9 @@ public class VendingMachineTest {
     @Test
     public void userGetsAllMoneyBackWhenCoinReturnPressed(){
         VendingMachine underTest = new VendingMachine();
+        int nickels = underTest.stashNickelsForTesting();
+        int dimes = underTest.stashDimesForTesting();
+        boolean change = underTest.makeChange(nickels,dimes);
         underTest.insert("quarter");
         underTest.insert("quarter");
         underTest.insert("quarter");
@@ -181,7 +196,7 @@ public class VendingMachineTest {
         int nickels = underTest.getNickels();
         int dimes = underTest.stashDimesForTesting();
         int quarters = underTest.getQuarters();
-        boolean change = underTest.makeChange(nickels, dimes, quarters);
+        boolean change = underTest.makeChange(nickels, dimes);
         assertThat(change).isEqualTo(false);
     }
     @Test
@@ -190,7 +205,7 @@ public class VendingMachineTest {
         int nickels = underTest.stashNickelsForTesting();
         int dimes = underTest.getDimes();
         int quarters = underTest.getQuarters();
-        boolean change = underTest.makeChange(nickels, dimes, quarters);
+        boolean change = underTest.makeChange(nickels, dimes);
         assertThat(change).isEqualTo(false);
     }
     @Test

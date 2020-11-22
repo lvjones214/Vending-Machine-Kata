@@ -15,12 +15,10 @@ public class VendingMachine {
 
     public int stashNickelsForTesting(){
         nickels = 3;
-        amount = amount +15;
         return nickels;
     }
     public int stashDimesForTesting(){
         dimes = 3;
-        amount = amount +30;
         return dimes;
     }
 
@@ -115,7 +113,7 @@ public class VendingMachine {
         return "$"+dollars;
     }
 
-    public boolean makeChange(int nickels, int dimes, int quarters) {
+    public boolean makeChange(int nickels, int dimes) {
         if(nickels < 1 || dimes < 1){
             makeChange = false;
         } else {
