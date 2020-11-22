@@ -11,6 +11,7 @@ public class VendingMachine {
     protected int dimes = 0;
     protected int quarters = 0;
     protected int pennies = 0;
+    private boolean makeChange = false;
 
     public int insert(String coin) {
         if(coin == "nickel"){
@@ -37,11 +38,13 @@ public class VendingMachine {
         return coinReturn;
     }
     public String vmDisplay(int amount){
-        if(amount > 0){
+        if(makeChange == false) {
+            message = "EXACT CHANGE ONLY";
+        }else if(amount > 0){
             dollars = amount/100.00;
             System.out.println(dollars);
             message = "$"+ dollars;
-        }else {
+        } else {
             message = "INSERT COIN $0.00";
         }
         return message;
@@ -103,8 +106,10 @@ public class VendingMachine {
 
     public boolean makeChange(int nickels, int dimes, int quarters) {
         if(nickels < 1 || dimes < 1){
-            return false;
+            makeChange = false;
+        } else {
+            makeChange = true;
         }
-        return true;
+        return makeChange;
     }
 }

@@ -203,4 +203,16 @@ public class VendingMachineTest {
         boolean change = underTest.makeChange(nickels, dimes, quarters);
         assertThat(change).isEqualTo(false);
     }
+    @Test
+    public void vendingMachineDisplaysExactChangeOnlyInsteadofInsertCoinWhenCantMakeChange(){
+        VendingMachine underTest = new VendingMachine();
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("nickel");
+        underTest.insert("nickel");
+        underTest.insert("nickel");
+        int amount = underTest.getAmount();
+        String message = underTest.vmDisplay(amount);
+        assertThat(message).isEqualTo("EXACT CHANGE ONLY");
+    }
 }
