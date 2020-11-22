@@ -102,7 +102,7 @@ public class VendingMachine {
     }
 
     public boolean makeChange(int nickels, int dimes, int quarters) {
-        if(nickels < 1){
+        if(nickels < 1 || dimes < 1){
             return false;
         }
         return true;

@@ -189,4 +189,18 @@ public class VendingMachineTest {
         boolean change = underTest.makeChange(nickels, dimes, quarters);
         assertThat(change).isEqualTo(false);
     }
+    @Test
+    public void vendingMachineKnowsItCantMakeChangeIfNoDimes(){
+        VendingMachine underTest = new VendingMachine();
+        underTest.insert("quarter");
+        underTest.insert("quarter");
+        underTest.insert("nickel");
+        underTest.insert("nickel");
+        underTest.insert("nickel");
+        int nickels = underTest.getNickels();
+        int dimes = underTest.getDimes();
+        int quarters = underTest.getQuarters();
+        boolean change = underTest.makeChange(nickels, dimes, quarters);
+        assertThat(change).isEqualTo(false);
+    }
 }
