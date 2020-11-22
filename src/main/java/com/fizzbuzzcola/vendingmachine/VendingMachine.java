@@ -7,17 +7,38 @@ public class VendingMachine {
     private String thankYou = "";
     private int money = 0;
     private double dollars = 0.00;
+    protected int nickels = 0;
+    protected int dimes = 0;
+    protected int quarters = 0;
+    protected int pennies = 0;
+    private boolean makeChange = false;
     boolean chipsSoldOut = false;
     boolean colaSoldOut = false;
     boolean candySoldOut = false;
 
+
+
+   //Testing features
+    public int stashNickelsForTesting(){
+        nickels = 3;
+        return nickels;
+    }
+    public int stashDimesForTesting(){
+        dimes = 3;
+        return dimes;
+    }
+
+    //Coin features
     public int insert(String coin) {
         if(coin == "nickel"){
             amount = amount + 5;
+            nickels = nickels+1;
         } else if(coin == "quarter"){
             amount = amount + 25;
+            quarters = quarters+1;
         } else if(coin == "dime"){
             amount = amount + 10;
+            dimes = dimes+1;
         } else if (coin == "penny"){
             amount = amount + 0;
         }
@@ -26,21 +47,47 @@ public class VendingMachine {
     public int checkCoin(String coin){
         if(coin == "penny"){
             coinReturn = coinReturn + 1;
+            pennies = pennies+1;
         } else {
             coinReturn = coinReturn + 0;
         }
         return coinReturn;
     }
+    public int getAmount() {return amount;}
+    public int getCoinReturn() {return coinReturn;}
+    public int getNickels() {return nickels;}
+    public int getDimes() {return dimes;}
+    public int getQuarters() {return quarters;}
+
+    public String pressCoinReturn(int coinReturn) {
+        dollars = coinReturn / 100.00;
+        amount = 0;
+        return "$"+dollars;
+    }
+    public boolean makeChange(int nickels, int dimes) {
+        if(nickels < 1 || dimes < 1){
+            makeChange = false;
+        } else {
+            makeChange = true;
+        }
+        return makeChange;
+    }
+
+   //Display feature
     public String vmDisplay(int amount){
-        if(amount > 0){
+        if(makeChange == false) {
+            message = "EXACT CHANGE ONLY";
+        }else if(amount > 0){
             dollars = amount/100.00;
             System.out.println(dollars);
             message = "$"+ dollars;
-        }else {
+        } else {
             message = "INSERT COIN $0.00";
         }
         return message;
     }
+
+  //Products in VM
     public String buyProduct(int amount, String productName){
         if(productName == "cola"){
             if(colaSoldOut == false){
@@ -83,14 +130,6 @@ public class VendingMachine {
         return thankYou;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public int getCoinReturn() {
-        return coinReturn;
-    }
-
     public boolean isChipsSoldOut() {
         return chipsSoldOut;
     }
@@ -101,12 +140,6 @@ public class VendingMachine {
 
     public boolean isCandySoldOut() {
         return candySoldOut;
-    }
-
-    public String pressCoinReturn(int coinReturn) {
-        dollars = coinReturn / 100.00;
-        amount = 0;
-        return "$"+dollars;
     }
 
     public boolean soldOutProduct(String product) {
