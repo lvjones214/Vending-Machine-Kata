@@ -12,6 +12,10 @@ public class VendingMachine {
     protected int quarters = 0;
     protected int pennies = 0;
     private boolean makeChange = false;
+    boolean chipsSoldOut = false;
+    boolean colaSoldOut = false;
+    boolean candySoldOut = false;
+
 
 
    //Testing features
@@ -54,6 +58,7 @@ public class VendingMachine {
     public int getNickels() {return nickels;}
     public int getDimes() {return dimes;}
     public int getQuarters() {return quarters;}
+
     public String pressCoinReturn(int coinReturn) {
         dollars = coinReturn / 100.00;
         amount = 0;
@@ -85,30 +90,75 @@ public class VendingMachine {
   //Products in VM
     public String buyProduct(int amount, String productName){
         if(productName == "cola"){
-            if(amount >= 100){
-                thankYou = "THANK YOU";
-                amount = amount - 100;
-            } else {
-                thankYou = "PRICE: $1.00";
+            if(colaSoldOut == false){
+                System.out.println(colaSoldOut);
+                if(amount >= 100){
+                    thankYou = "THANK YOU";
+                    amount = amount - 100;
+                } else {
+                    thankYou = "PRICE: $1.00";
+                }
+            } else if(colaSoldOut == true) {
+                thankYou = "SOLD OUT";
             }
         }
         if(productName == "chips"){
-            if(amount >= 50){
-                thankYou = "THANK YOU";
-                amount = amount - 50;
+            if(chipsSoldOut == true){
+                thankYou = "SOLD OUT";
             } else {
-                thankYou = "PRICE: $0.50";
+                if(amount >= 50){
+                    thankYou = "THANK YOU";
+                    amount = amount - 50;
+                } else {
+                    thankYou = "PRICE: $0.50";
+                }
             }
         }
         if(productName == "candy"){
-            if(amount >= 65){
-                thankYou = "THANK YOU";
-                amount = amount -65;
+            if(candySoldOut == true){
+                thankYou = "SOLD OUT";
             } else {
-                thankYou = "PRICE: $0.65";
+                if(amount >= 65){
+                    thankYou = "THANK YOU";
+                    amount = amount -65;
+                } else {
+                    thankYou = "PRICE: $0.65";
+                }
             }
         }
         coinReturn = coinReturn + amount;
         return thankYou;
+    }
+
+    public boolean isChipsSoldOut() {
+        return chipsSoldOut;
+    }
+
+    public boolean isColaSoldOut() {
+        return colaSoldOut;
+    }
+
+    public boolean isCandySoldOut() {
+        return candySoldOut;
+    }
+
+    public boolean soldOutProduct(String product) {
+        boolean productSoldOut = false;
+        if(product == "cola"){
+            colaSoldOut = true;
+            productSoldOut = true;
+        } else if(product == "chips") {
+            chipsSoldOut = true;
+            productSoldOut = true;
+        }else if(product == "candy"){
+            candySoldOut = true;
+            productSoldOut = true;
+        }else{
+            productSoldOut = false;
+            colaSoldOut = false;
+            chipsSoldOut = false;
+            candySoldOut = false;
+        }
+        return productSoldOut;
     }
 }

@@ -84,6 +84,8 @@ public class VendingMachineTest {
     public void userCanBuyCola(){
         VendingMachine underTest = new VendingMachine();
         int money = 100;
+        boolean colaSoldOut = underTest.isColaSoldOut();
+        assertThat(colaSoldOut).isEqualTo(false);
         String message = underTest.buyProduct(money, "cola");
         assertThat(message).isEqualTo("THANK YOU");
     }
@@ -216,4 +218,19 @@ public class VendingMachineTest {
         String message = underTest.vmDisplay(amount);
         assertThat(message).isEqualTo("EXACT CHANGE ONLY");
     }
+    @Test
+    public void whenItemOutOfStockVendingMachineDisplaysSoldOut(){
+        VendingMachine underTest = new VendingMachine();
+        int nickels = underTest.stashNickelsForTesting();
+        int dimes = underTest.stashDimesForTesting();
+        boolean change = underTest.makeChange(nickels,dimes);
+        boolean soldOutCola = underTest.soldOutProduct("cola");
+        assertThat(soldOutCola).isEqualTo(true);
+        int amount = underTest.getAmount();
+        String message = underTest.buyProduct(amount, "cola");
+        assertThat(message).isEqualTo("SOLD OUT");
+        String message2 = underTest.vmDisplay(amount);
+        assertThat(message2).isEqualTo("INSERT COIN $0.00");
+    }
 }
+
