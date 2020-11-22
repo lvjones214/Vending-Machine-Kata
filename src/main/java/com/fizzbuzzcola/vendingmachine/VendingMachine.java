@@ -13,6 +13,17 @@ public class VendingMachine {
     protected int pennies = 0;
     private boolean makeChange = false;
 
+    public int stashNickelsForTesting(){
+        nickels = 3;
+        amount = amount +15;
+        return nickels;
+    }
+    public int stashDimesForTesting(){
+        dimes = 3;
+        amount = amount +30;
+        return dimes;
+    }
+
     public int insert(String coin) {
         if(coin == "nickel"){
             amount = amount + 5;
