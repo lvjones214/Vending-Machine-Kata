@@ -13,6 +13,8 @@ public class VendingMachine {
     protected int pennies = 0;
     private boolean makeChange = false;
 
+
+   //Testing features
     public int stashNickelsForTesting(){
         nickels = 3;
         return nickels;
@@ -22,6 +24,7 @@ public class VendingMachine {
         return dimes;
     }
 
+    //Coin features
     public int insert(String coin) {
         if(coin == "nickel"){
             amount = amount + 5;
@@ -46,6 +49,26 @@ public class VendingMachine {
         }
         return coinReturn;
     }
+    public int getAmount() {return amount;}
+    public int getCoinReturn() {return coinReturn;}
+    public int getNickels() {return nickels;}
+    public int getDimes() {return dimes;}
+    public int getQuarters() {return quarters;}
+    public String pressCoinReturn(int coinReturn) {
+        dollars = coinReturn / 100.00;
+        amount = 0;
+        return "$"+dollars;
+    }
+    public boolean makeChange(int nickels, int dimes) {
+        if(nickels < 1 || dimes < 1){
+            makeChange = false;
+        } else {
+            makeChange = true;
+        }
+        return makeChange;
+    }
+
+   //Display feature
     public String vmDisplay(int amount){
         if(makeChange == false) {
             message = "EXACT CHANGE ONLY";
@@ -58,6 +81,8 @@ public class VendingMachine {
         }
         return message;
     }
+
+  //Products in VM
     public String buyProduct(int amount, String productName){
         if(productName == "cola"){
             if(amount >= 100){
@@ -85,40 +110,5 @@ public class VendingMachine {
         }
         coinReturn = coinReturn + amount;
         return thankYou;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public int getCoinReturn() {
-        return coinReturn;
-    }
-
-    public int getNickels() {
-        return nickels;
-    }
-
-    public int getDimes() {
-        return dimes;
-    }
-
-    public int getQuarters() {
-        return quarters;
-    }
-
-    public String pressCoinReturn(int coinReturn) {
-        dollars = coinReturn / 100.00;
-        amount = 0;
-        return "$"+dollars;
-    }
-
-    public boolean makeChange(int nickels, int dimes) {
-        if(nickels < 1 || dimes < 1){
-            makeChange = false;
-        } else {
-            makeChange = true;
-        }
-        return makeChange;
     }
 }
