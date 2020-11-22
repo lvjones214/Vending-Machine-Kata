@@ -166,7 +166,13 @@ public class VendingMachineTest {
         underTest.insert("quarter");
         underTest.insert("nickel");
         underTest.insert("nickel");
-        underTest.insert("dime");
-        
+        int amount = underTest.getAmount();
+        assertThat(amount).isEqualTo(85);
+        int nickels = underTest.getNickels();
+        int dimes = underTest.getDimes();
+        int quarters = underTest.getQuarters();
+        String change = underTest.makeChange(nickels, dimes, quarters);
+        assertThat(change).isEqualTo("nickels=2, dimes=0, quarters=3" );
     }
+
 }

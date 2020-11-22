@@ -7,14 +7,21 @@ public class VendingMachine {
     private String thankYou = "";
     private int money = 0;
     private double dollars = 0.00;
+    protected int nickels = 0;
+    protected int dimes = 0;
+    protected int quarters = 0;
+    protected int pennies = 0;
 
     public int insert(String coin) {
         if(coin == "nickel"){
             amount = amount + 5;
+            nickels = nickels+1;
         } else if(coin == "quarter"){
             amount = amount + 25;
+            quarters = quarters+1;
         } else if(coin == "dime"){
             amount = amount + 10;
+            dimes = dimes+1;
         } else if (coin == "penny"){
             amount = amount + 0;
         }
@@ -23,6 +30,7 @@ public class VendingMachine {
     public int checkCoin(String coin){
         if(coin == "penny"){
             coinReturn = coinReturn + 1;
+            pennies = pennies+1;
         } else {
             coinReturn = coinReturn + 0;
         }
@@ -75,9 +83,25 @@ public class VendingMachine {
         return coinReturn;
     }
 
+    public int getNickels() {
+        return nickels;
+    }
+
+    public int getDimes() {
+        return dimes;
+    }
+
+    public int getQuarters() {
+        return quarters;
+    }
+
     public String pressCoinReturn(int coinReturn) {
         dollars = coinReturn / 100.00;
         amount = 0;
         return "$"+dollars;
+    }
+
+    public String makeChange(int nickels, int dimes, int quarters) {
+        return "nickels="+nickels+", dimes="+dimes+", quarters="+quarters;
     }
 }
